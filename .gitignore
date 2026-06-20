@@ -1,0 +1,7 @@
+# Test artifacts — frame ảnh cắt ra từ creative thật của Bonboz (riêng tư, không đẩy lên)
+frames_*/
+frames/
+*.mp4
+__pycache__/
+*.pyc
+.DS_Store

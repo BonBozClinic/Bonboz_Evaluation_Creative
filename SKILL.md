@@ -197,6 +197,18 @@ transcript), note that caption/voiceover claims were not verified.
 
 Verdict gate (P02): never mark a creative "ship-ready" while a 🔴 flag stands.
 
+TWO-AXIS DECISION (REQUIRED — keep score and policy SEPARATE; see the "ĐÁNH GIÁ 2 TRỤC"
+section in bonboz_creative_checklist.md). A high score does NOT mean runnable; "policy PASS"
+does NOT mean the creative is good. Always end every evaluation with this exact block:
+```
+Điểm chất lượng: X.X/10 → Chất lượng: ĐẠT / CẦN TỐI ƯU / YẾU  (nêu lý do, vd "CTA=3 quá thấp")
+Trạng thái Policy: PASS / SỬA TRƯỚC / KHÔNG CHẠY  (cờ chính)
+==> QUYẾT ĐỊNH CUỐI: SẴN SÀNG CHẠY / TỐI ƯU CHẤT LƯỢNG TRƯỚC / SỬA POLICY TRƯỚC / KHÔNG CHẠY
+```
+Quality rule: Tổng <7.0 hoặc bất kỳ chiều cốt lõi (Hook/Message/CTA) <5 ⇒ Chất lượng ≠ ĐẠT.
+CTA <5 ⇒ tối thiểu "CẦN TỐI ƯU" (ngoại lệ: creative awareness/branding thuần thì CTA không bắt buộc).
+Policy PASS nhưng Chất lượng chưa ĐẠT ⇒ QUYẾT ĐỊNH CUỐI = "TỐI ƯU CHẤT LƯỢNG TRƯỚC" (KHÔNG ghi "sẵn sàng chạy").
+
 ## Evaluation Output Template
 
 Use `references/evaluation_template.md` for the structured output format.

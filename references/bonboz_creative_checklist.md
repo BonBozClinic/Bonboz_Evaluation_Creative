@@ -45,6 +45,35 @@ QC process (P02) · Không tạo ad set test riêng (P03) · Spec file ảnh/vid
 Giấy phép đã có (B06) · TPCN (B08) · Tiếng Việt (B05) · Disclaimer caption (W01) ·
 Thông điệp trước "See More" 125 ký tự (W17 — thuộc caption) · Audio claim/calm (W05, W06 — cần transcript).
 
-## Verdict gate (P02)
-KHÔNG "ship" creative khi còn cờ 🔴 với lý do "chạy thử". Mọi creative qua QC 4 lớp:
-điểm 8 chiều → checklist riêng → policy → verdict cuối.
+## ĐÁNH GIÁ 2 TRỤC — Chất lượng × Policy (BẮT BUỘC tách rõ)
+
+Điểm số và verdict policy là HAI thứ khác nhau — phải hiển thị tách biệt, KHÔNG gộp.
+Điểm cao không có nghĩa được chạy; "không vướng policy" không có nghĩa creative đã tốt.
+
+### TRỤC A — POLICY (rủi ro bị Meta/luật từ chối)
+PASS / SỬA TRƯỚC KHI CHẠY / KHÔNG NÊN CHẠY  → theo `meta_policy_aesthetic.md`.
+
+### TRỤC B — CHẤT LƯỢNG (creative hay/dở)
+Dựa trên điểm tổng + các chiều cốt lõi (Hook, Message, CTA):
+- **ĐẠT**        : Tổng ≥ 7.0 VÀ không chiều cốt lõi nào < 5.
+- **CẦN TỐI ƯU** : 6.0 ≤ Tổng < 7.0, HOẶC bất kỳ chiều cốt lõi < 5.
+- **YẾU**        : Tổng < 6.0.
+- **Hard rule CTA:** CTA < 5 ⇒ tối thiểu "CẦN TỐI ƯU" (dù policy PASS) + nêu rõ "CTA yếu".
+  *Ngoại lệ:* creative AWARENESS/branding thuần (không mục tiêu chuyển đổi) → KHÔNG hạ vì CTA; ghi chú "CTA không bắt buộc cho dạng awareness".
+
+### QUYẾT ĐỊNH CUỐI (kết hợp 2 trục)
+| Policy | Chất lượng | → Quyết định cuối |
+|---|---|---|
+| KHÔNG NÊN CHẠY | (bất kỳ) | **KHÔNG CHẠY** (sửa policy) |
+| SỬA TRƯỚC | (bất kỳ) | **SỬA POLICY TRƯỚC** |
+| PASS | ĐẠT | **SẴN SÀNG CHẠY** |
+| PASS | CẦN TỐI ƯU / YẾU | **TỐI ƯU CHẤT LƯỢNG TRƯỚC** (chạy test được nhưng nêu rõ điểm yếu, vd CTA=3) |
+
+(P02) KHÔNG "ship" khi còn cờ 🔴 với lý do "chạy thử".
+
+### Khối output bắt buộc (cuối mỗi đánh giá)
+```
+Điểm chất lượng: X.X / 10  →  Chất lượng: ĐẠT / CẦN TỐI ƯU / YẾU  (lý do, vd "CTA=3 quá thấp")
+Trạng thái Policy: PASS / SỬA TRƯỚC / KHÔNG CHẠY  (cờ chính)
+==> QUYẾT ĐỊNH CUỐI: <SẴN SÀNG CHẠY / TỐI ƯU CHẤT LƯỢNG TRƯỚC / SỬA POLICY TRƯỚC / KHÔNG CHẠY>
+```

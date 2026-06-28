@@ -1,0 +1,21 @@
+# Secret — KHÔNG commit key
+config.json
+
+# Python
+__pycache__/
+*.pyc
+
+# Dữ liệu chạy (video tải về, kết quả, frame) — không commit
+dl/
+batch/dl/
+batch/results_b2.json
+batch/creatives_b2.json
+*.mp4
+*.mov
+*.m4v
+*.docx
+*.notes.json
+
+# File cũ đã thay thế (giữ local, không commit)
+/index.html
+/policies.json

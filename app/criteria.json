@@ -1,0 +1,52 @@
+{
+  "policy": [
+    {"id":"body_shaming","name":"Body-shaming / chê ngoại hình","severity":"CAO","trigger":"Ngụ ý chê khiếm khuyết người xem: mũi tẹt/xấu, tạm biệt mũi tẹt, khoanh đỏ chê mũi","fix":"Đổi sang 'dành cho ai muốn dáng mũi hài hòa hơn'","enabled":true},
+    {"id":"prohibited","name":"Nội dung cấm chung","severity":"CAO","trigger":"Vũ khí, ma túy, người lớn, máu me giật gân, phân biệt đối xử","fix":"Bỏ/thay cảnh","enabled":true},
+    {"id":"absolute_claim","name":"Claim tuyệt đối","severity":"TB","trigger":"tuyệt đối / cam kết / 100% / an toàn tuyệt đối / vĩnh viễn / không đau không sẹo","fix":"'kết quả bền lâu tùy cơ địa' / 'hạn chế đau, hạn chế sẹo'","enabled":true},
+    {"id":"medical_treatment","name":"Từ ngữ trị bệnh","severity":"TB","trigger":"trị / đặc trị / chữa / điều trị dứt điểm","fix":"'cải thiện / chăm sóc'","enabled":true},
+    {"id":"superlative","name":"Vô căn cứ số 1","severity":"TB","trigger":"tốt nhất / duy nhất / số 1 / độc quyền không tài liệu","fix":"Bỏ hoặc nêu sự thật kiểm chứng được","enabled":true},
+    {"id":"competitor","name":"So sánh trực tiếp đối thủ","severity":"TB","trigger":"đẹp hơn / rẻ hơn [tên đơn vị khác]","fix":"Chỉ nói lợi ích của mình","enabled":true},
+    {"id":"unsourced_stat","name":"Số liệu không nguồn","severity":"TB","trigger":"% hoặc con số không trích nguồn","fix":"Bỏ số hoặc dẫn nguồn; nói định tính","enabled":true},
+    {"id":"engagement_bait","name":"Engagement bait","severity":"TB","trigger":"tag bạn bè / like nếu / share nhận quà","fix":"Đổi sang CTA tư vấn","enabled":true},
+    {"id":"graphic_surgery","name":"Cảnh mổ máu me","severity":"TB","trigger":"Cận vết rạch / dụng cụ đâm vào da / máu","fix":"Giữ góc rộng, không lộ thao tác rạch","enabled":true},
+    {"id":"missing_legal","name":"Thiếu khối pháp lý","severity":"TB","trigger":"Thiếu số GPHĐ + tên + địa chỉ cơ sở","fix":"Thêm GPHĐ 10036 (bs Vũ) / 11113 (laser, bs Kha) + địa chỉ + hotline","enabled":true},
+    {"id":"idealization","name":"Lý tưởng hóa cơ thể","severity":"NHẸ","trigger":"Ngụ ý 'phải đẹp mới ổn'","fix":"Cân bằng thông điệp tự tin/hài hòa","enabled":true},
+    {"id":"body_closeup","name":"Zoom cận vùng cơ thể","severity":"NHẸ","trigger":"Zoom cận vùng nhạy cảm quá mức","fix":"Mặt thì OK; tránh cận vùng nhạy cảm","enabled":true},
+    {"id":"exaggeration","name":"Cường điệu","severity":"NHẸ","trigger":"lột xác ngoạn mục / thần kỳ / đẹp như sao Hàn","fix":"Đổi 'cải thiện rõ rệt'","enabled":true},
+    {"id":"hard_timeframe","name":"Mốc thời gian cứng","severity":"NHẸ","trigger":"đẹp sau đúng 7 ngày / sửa trong 2 tuần","fix":"Ước lượng mềm: 'thường cải thiện sau vài tuần tùy cơ địa'","enabled":true},
+    {"id":"allcaps_sensational","name":"ALL-CAPS giật gân","severity":"NHẸ","trigger":"Viết hoa toàn bộ ĐI KÈM từ giật gân/emoji sốc","fix":"Bỏ giật gân","enabled":true},
+    {"id":"flashing","name":"Flashing / nhấp nháy mạnh","severity":"NHẸ","trigger":"Hiệu ứng nhấp nháy mạnh","fix":"Giảm hiệu ứng nhấp nháy","enabled":true},
+    {"id":"before_after","name":"Before/After","severity":"TB","trigger":"Ghép cặp trước-sau","fix":"(Bonboz cho phép — tắt)","enabled":false},
+    {"id":"age_18plus","name":"Targeting 18+","severity":"NHẸ","trigger":"Cấu hình ad set","fix":"(Tắt)","enabled":false},
+    {"id":"doctor_imagery","name":"Hình bác sĩ / blouse","severity":"NHẸ","trigger":"Bác sĩ áo blouse bảo chứng","fix":"(Bonboz dùng thoải mái — tắt)","enabled":false},
+    {"id":"fake_ui","name":"Giả UI Facebook","severity":"TB","trigger":"Nút play/like/share giả","fix":"(Tắt)","enabled":false}
+  ],
+  "text_overlay": [
+    {"id":"to_legible","label":"Phụ đề/overlay rõ","definition":"Tương phản đủ, không quá nhỏ; yếu nếu chữ chìm vào nền","enabled":true},
+    {"id":"to_density","label":"Ít chữ trên ảnh","definition":"Không dày đặc chữ; yếu nếu nhồi chữ kín frame","enabled":true},
+    {"id":"to_headline","label":"Headline ≤ 40 ký tự","definition":"Yếu nếu tiêu đề dài lê thê","enabled":true},
+    {"id":"to_match","label":"Overlay khớp chủ đề","definition":"Chữ đúng dịch vụ đang nói; yếu nếu ad mũi để chữ 'da trắng'","enabled":true},
+    {"id":"to_safezone","label":"Safe-zone","definition":"Chữ/logo không sát đáy/đỉnh (bị UI nền tảng che)","enabled":true},
+    {"id":"to_spelling","label":"Chính tả","definition":"Không sai (vd 'CAM THƯỜNG' → 'tầm thường')","enabled":true},
+    {"id":"to_brand","label":"Nhận diện thương hiệu","definition":"Tên/logo Bonboz nhất quán, không 2 kiểu","enabled":true}
+  ],
+  "voice": [
+    {"id":"vo_no_extra_claim","label":"Không claim ngoài text","definition":"Lời nói không thêm claim mà overlay/caption không có","enabled":true},
+    {"id":"vo_no_banned_claim","label":"Không claim cấm trong giọng nói","definition":"'cam kết/100%/trị khỏi' trong voiceover","enabled":true},
+    {"id":"vo_tone","label":"Tone calm/tin cậy","definition":"Không hype, la hét, dồn dập","enabled":true},
+    {"id":"vo_clarity","label":"Audio rõ","definition":"Không ồn, nghe được, không rè","enabled":true},
+    {"id":"vo_intent","label":"Có từ khóa intent","definition":"'tư vấn/đặt lịch/thăm khám' xuất hiện trong lời nói","enabled":true},
+    {"id":"vo_speed","label":"Tốc độ nói hợp lý","definition":"Không quá nhanh/chậm gây khó nghe","enabled":true}
+  ],
+  "video": [
+    {"id":"vd_hook","label":"Hook (0-3s)","definition":"3s đầu chặn scroll? Yếu nếu mở logo/cảnh tĩnh, chưa có mặt/nỗi đau","weight":1.5,"enabled":true},
+    {"id":"vd_hold","label":"Hold (giữ chân)","definition":"Giữ người xem tới giữa/cuối? Yếu nếu tụt nhịp, dễ thoát","weight":1.3,"enabled":true},
+    {"id":"vd_message","label":"Message","definition":"Thông điệp giá trị rõ, 1 dịch vụ, <10 từ? Yếu nếu mơ hồ/trộn dịch vụ","weight":1.3,"enabled":true},
+    {"id":"vd_cta","label":"CTA","definition":"Có CTA on-screen + từ intent ở frame cuối? Yếu nếu chỉ hotline thụ động","weight":1.3,"enabled":true},
+    {"id":"vd_audience","label":"Audience","definition":"Đúng tệp + insight đúng? Yếu nếu chung chung 'cho mọi người'","weight":1.2,"enabled":true},
+    {"id":"vd_visual","label":"Visual","definition":"Nét/sáng/đúng tỉ lệ/không AI méo?","weight":1.0,"enabled":true},
+    {"id":"vd_pacing","label":"Pacing","definition":"Nhịp đều, không 'dead spot' (đoạn chết)?","weight":1.0,"enabled":true},
+    {"id":"vd_emotion","label":"Emotion","definition":"Tạo cảm xúc/khao khát? Yếu nếu 'informative nhưng phẳng'","weight":1.0,"enabled":true},
+    {"id":"vd_trust","label":"Trust / Độ thật","definition":"Cảm giác thật, đáng tin (quan trọng ngành y tế)?","weight":1.0,"enabled":true}
+  ]
+}

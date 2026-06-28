@@ -1,0 +1,6 @@
+{
+  "gemini_api_key": "",
+  "gemini_model": "gemini-2.5-flash",
+  "claude_model": "opus",
+  "_note": "Copy file này thành config.json rồi dán Gemini API key (lấy free ở https://aistudio.google.com). config.json KHÔNG được commit (đã gitignore). Để trống = chạy Claude-only (không có voice + xem video native)."
+}

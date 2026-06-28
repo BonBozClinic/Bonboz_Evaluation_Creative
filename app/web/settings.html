@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings · Bonboz Creative Review</title>
+<style>
+  :root{--mint:#2E8B7A;--dark:#1f3b35;--bg:#f6f8f7;--card:#fff;--line:#e2e7e5;--text:#1f2a27;--muted:#6b7672}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Arial,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);font-size:14px}
+  header{display:flex;align-items:center;gap:12px;padding:10px 16px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:bold;color:var(--dark)}
+  .dot{width:12px;height:12px;border-radius:50%;background:var(--mint)}
+  .nav a{margin-left:6px;font-size:13px;text-decoration:none;color:var(--muted);padding:4px 10px;border-radius:7px}
+  .nav a.on{background:var(--bg);color:var(--text);font-weight:bold}
+  .spacer{flex:1}
+  .btn{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:6px 11px;font-size:13px;cursor:pointer;color:var(--text)}
+  .btn:hover{background:var(--bg)} .btn.primary{background:var(--mint);color:#fff;border-color:var(--mint)}
+  main{max-width:1040px;margin:0 auto;padding:16px}
+  .hint{font-size:12px;color:var(--muted)}
+  .grp{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:16px;overflow:hidden}
+  .grphead{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);background:#eef3f1}
+  .grphead b{color:var(--dark)}
+  table{width:100%;border-collapse:collapse}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:top}
+  th{font-size:11px;color:var(--muted)}
+  tr.off{opacity:.45}
+  input,select,textarea{font-family:inherit;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:5px;width:100%}
+  textarea{resize:vertical;min-height:32px}
+  .x{border:none;background:none;color:var(--muted);cursor:pointer;font-size:16px}
+  #msg{font-size:13px;color:var(--mint)}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="dot"></span> Bonboz Creative Review</div>
+  <span class="nav"><a href="/">Review</a><a class="on" href="/settings">Settings</a></span>
+  <div class="spacer"></div>
+  <span id="msg"></span>
+  <button class="btn primary" id="save">Lưu tất cả</button>
+</header>
+<main>
+  <div class="hint" style="margin-bottom:12px">Tiêu chí AI dùng để chấm. Bật/tắt hoặc thêm. Backend chỉ đổ tiêu chí <b>đang bật</b> vào prompt Claude.</div>
+  <div id="groups"></div>
+</main>
+<script>
+(function(){
+  var data={};
+  var GROUPS=[
+    {key:"policy",title:"① POLICY — đúng/sai → cờ",cols:[
+      {k:"severity",label:"Cấp",type:"sev",w:"70px"},{k:"name",label:"Tên",type:"text",w:"190px"},
+      {k:"trigger",label:"Dấu hiệu",type:"area"},{k:"fix",label:"Cách sửa",type:"area",w:"200px"}],
+      add:function(){return {id:"p_"+Date.now(),name:"Policy mới",severity:"TB",trigger:"",fix:"",enabled:true}}},
+    {key:"text_overlay",title:"② TEXT OVERLAY — chất lượng chữ trên hình",cols:[
+      {k:"label",label:"Tiêu chí",type:"text",w:"220px"},{k:"definition",label:"Định nghĩa / yếu khi nào",type:"area"}],
+      add:function(){return {id:"to_"+Date.now(),label:"Tiêu chí mới",definition:"",enabled:true}}},
+    {key:"voice",title:"③ VOICE — chất lượng lời thoại (cần Gemini)",cols:[
+      {k:"label",label:"Tiêu chí",type:"text",w:"220px"},{k:"definition",label:"Định nghĩa / yếu khi nào",type:"area"}],
+      add:function(){return {id:"vo_"+Date.now(),label:"Tiêu chí mới",definition:"",enabled:true}}},
+    {key:"video",title:"④ VIDEO — chiều chấm (xem tổng thể)",cols:[
+      {k:"label",label:"Chiều",type:"text",w:"160px"},{k:"weight",label:"Trọng số",type:"num",w:"70px"},
+      {k:"definition",label:"Định nghĩa / yếu chỗ nào",type:"area"}],
+      add:function(){return {id:"vd_"+Date.now(),label:"Chiều mới",weight:1.0,definition:"",enabled:true}}}
+  ];
+  function esc(s){return (s||"").toString().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;")}
+  function cell(g,row,i,col){
+    var v=row[col.k];
+    if(col.type==="sev")return '<select data-g="'+g.key+'" data-i="'+i+'" data-k="severity"><option '+(v=="CAO"?"selected":"")+'>CAO</option><option '+(v=="TB"?"selected":"")+'>TB</option><option '+(v=="NHẸ"?"selected":"")+'>NHẸ</option></select>';
+    if(col.type==="area")return '<textarea data-g="'+g.key+'" data-i="'+i+'" data-k="'+col.k+'">'+esc(v)+'</textarea>';
+    if(col.type==="num")return '<input type="number" step="0.1" data-g="'+g.key+'" data-i="'+i+'" data-k="'+col.k+'" value="'+esc(v)+'">';
+    return '<input data-g="'+g.key+'" data-i="'+i+'" data-k="'+col.k+'" value="'+esc(v)+'">';
+  }
+  function render(){
+    var root=document.getElementById('groups');root.innerHTML="";
+    GROUPS.forEach(function(g){
+      var rows=data[g.key]||[];
+      var th='<th style="width:34px">Bật</th>'+g.cols.map(function(c){return '<th'+(c.w?' style="width:'+c.w+'"':'')+'>'+c.label+'</th>'}).join("")+'<th style="width:28px"></th>';
+      var body=rows.map(function(row,i){
+        var tds='<td><input type="checkbox" style="width:auto" '+(row.enabled?"checked":"")+' data-g="'+g.key+'" data-i="'+i+'" data-k="enabled"></td>'+
+          g.cols.map(function(c){return '<td>'+cell(g,row,i,c)+'</td>'}).join("")+
+          '<td><button class="x" data-del="'+g.key+':'+i+'">×</button></td>';
+        return '<tr'+(row.enabled?"":' class="off"')+'>'+tds+'</tr>';
+      }).join("");
+      var on=rows.filter(function(r){return r.enabled}).length;
+      root.insertAdjacentHTML('beforeend',
+        '<div class="grp"><div class="grphead"><b>'+g.title+'</b><span class="hint">'+on+'/'+rows.length+' bật</span><span class="spacer"></span><button class="btn" data-add="'+g.key+'">+ Thêm</button></div>'+
+        '<table><thead><tr>'+th+'</tr></thead><tbody>'+body+'</tbody></table></div>');
+    });
+    root.querySelectorAll('[data-k]').forEach(function(el){el.addEventListener('change',function(){
+      var g=this.dataset.g,i=+this.dataset.i,k=this.dataset.k;
+      var val=(k==="enabled")?this.checked:(this.type==="number"?parseFloat(this.value):this.value);
+      data[g][i][k]=val; if(k==="enabled")render();});});
+    root.querySelectorAll('[data-del]').forEach(function(b){b.addEventListener('click',function(){
+      var p=this.dataset.del.split(":");data[p[0]].splice(+p[1],1);render();});});
+    root.querySelectorAll('[data-add]').forEach(function(b){b.addEventListener('click',function(){
+      var gk=this.dataset.add;var g=GROUPS.find(function(x){return x.key===gk});data[gk].push(g.add());render();});});
+  }
+  fetch('/api/criteria').then(function(r){return r.json()}).then(function(j){data=j;render()});
+  document.getElementById('save').addEventListener('click',function(){
+    fetch('/api/criteria',{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify({criteria:data})})
+      .then(function(r){return r.json()}).then(function(){var m=document.getElementById('msg');m.textContent="Đã lưu ✓";setTimeout(function(){m.textContent=""},2500);});});
+})();
+</script>
+</body>
+</html>
